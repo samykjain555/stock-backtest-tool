@@ -1,4 +1,35 @@
-# Stock Backtesting Tool
+
+# Create requirements.txt
+requirements = '''streamlit==1.28.0
+pandas==2.1.1
+yfinance==0.2.31
+numpy==1.26.0
+'''
+
+with open('requirements.txt', 'w') as f:
+    f.write(requirements)
+
+print("✅ requirements.txt created")
+
+# Create railway.json for configuration
+railway_config = '''{
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "streamlit run streamlit_backtest_app.py --server.port=$PORT --server.address=0.0.0.0",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}'''
+
+with open('railway.json', 'w') as f:
+    f.write(railway_config)
+
+print("✅ railway.json created")
+
+# Create README with deployment instructions
+readme = '''# Stock Backtesting Tool
 
 A Streamlit app for backtesting intraday trading strategies with configurable stop loss and take profit.
 
@@ -65,3 +96,12 @@ Your CSV should have these columns:
 
 ## Configuration
 You can adjust SL and TP percentages in the sidebar of the app.
+'''
+
+with open('README.md', 'w') as f:
+    f.write(readme)
+
+print("✅ README.md created")
+print("\n" + "="*80)
+print("ALL FILES CREATED SUCCESSFULLY!")
+print("="*80)
